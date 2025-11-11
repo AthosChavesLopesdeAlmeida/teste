@@ -1,5 +1,5 @@
 const alph = [
-  'a', 'b', 'c', 'd,', 'e',
+  'a', 'b', 'c', 'd', 'e',
   'f', 'g', 'h', 'i', 'j',
   'k', 'l', 'm', 'n', 'o',
   'p', 'q', 'r', 's', 't',
@@ -7,25 +7,26 @@ const alph = [
 ]
 
 
-
-/* str.forEach(el = > {
-  str.[i] = str[i + alph[num]]
-}) */
-
-
-
-
-
 function caesar(str, num) {
-  // Condições básicas para o código
   if (num > 25 || num < 0) return null;
 
-  // Variáveis
-  let divide = str.split('');
-  let enc = [];
+  str = str.split('');
+  let i = 0;
 
-  // Lógica
-  divide.forEach(i => {
-    divide[i] = alph[divide[i] + [num]]
-  });
+  while (i < str.length) {
+    let ind = alph.indexOf(str[i]);
+    
+    if (ind !== -1) {
+      let newInd = (ind + num) % 26;
+      str[i] = alph[newInd];
+
+    } 
+
+    i++;
+  }
+
+  
+  return str.join('');
 }
+
+console.log(caesar('julius caesar', 3));
